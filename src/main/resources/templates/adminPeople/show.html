@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en", xml:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Человек</title>
+</head>
+<body>
+
+<p th:text="${'ID: ' + person.getId()}">VALUE</p>
+<p th:text="${'Name: ' + person.getUsername()}">VALUE</p>
+<p th:text="${'Year of birth: ' + person.getDateOfBirth()}">VALUE</p>
+<p th:text="${'Email: ' + person.getEmail()}">VALUE</p>
+<p th:text="${'Phone Number: ' + person.getPhoneNumber()}">VALUE</p>
+<p th:text="${'Date of registration: ' + person.getCreatedAt()}">VALUE</p>
+<p th:text="${'Role: ' + person.getRole()}">VALUE</p>
+
+<br/>
+<hr/>
+<div th:if="${book.isEmpty()}">
+    <p>Haven't picked up any books yet</p>
+    <hr/>
+</div>
+
+<div th:if="${!book.isEmpty()}">
+    <hr/>
+    <b>Books:</b>
+    <br/>
+    <table th:each="book : ${book}">
+        <tr>
+            <td>
+                <span th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYearOfPublication()}"
+                      th:style="${book.isExpired()} ? 'color: red' : 'color: black'">
+                    book
+                </span>
+            </td>
+        </tr>
+    </table>
+    <hr/>
+</div>
+<br/>
+<a th:href="@{/admin/{id}/edit(id=${person.getId()})}">Edit</a>
+<br/>
+<a th:href="@{/admin}">Back</a>
+<br/>
+<form th:method="DELETE" th:action="@{/admin/{id}(id=${person.getId()})}">
+    <input style="color: red" type="submit" value="Delete!">
+</form>
+</body>
+</html>

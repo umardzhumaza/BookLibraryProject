@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en", xml:th="http://thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Books</title>
+</head>
+<body>
+
+<p th:text="${'Title: ' + book.getTitle()}">VALUE</p>
+<p th:text="${'Author: ' + book.getAuthor()}">VALUE</p>
+<p th:text="${'Year of publication: ' + book.getYearOfPublication()}">VALUE</p>
+<p th:text="${'Description: ' + book.getDescription()}">VALUE</p>
+<br/>
+<div th:if="${owner}">
+  <span>The book is now: </span> <span th:text="${owner.getUsername()}">Person Name</span>
+</div>
+
+<div th:if="${people}">
+  <span>No one has picked up the book yet.</span>
+</div>
+<br/>
+
+<hr/>
+<a th:href="@{/book}">Back</a>
+<br/>
+</body>
+</html>
